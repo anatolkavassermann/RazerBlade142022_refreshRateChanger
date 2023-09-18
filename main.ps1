@@ -1,3 +1,4 @@
+#copied Set-ScreenRefreshRate and Get-ScreenRefreshRate from https://stackoverflow.com/questions/56424817/change-windows-10-screen-refresh-rate-59-if-60-60-if-59
 function Set-ScreenRefreshRate
 { 
     param ( 
@@ -123,9 +124,7 @@ function Set-ScreenRefreshRate
                     return dm; 
                 } 
             } 
-        } 
-"@ # don't indend this line
-
+        }
     Add-Type $pinvokeCode -ErrorAction SilentlyContinue
 
     [Display.PrimaryScreen]::ChangeRefreshRate($frequency) 
