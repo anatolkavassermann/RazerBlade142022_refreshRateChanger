@@ -139,19 +139,14 @@ function Set-ScreenRefreshRate
     }
 
     $CurrentRefreshRate = Get-ScreenRefreshRate
-    $CurrentStatus = Get-Content -Path "C:\Users\mesen\Desktop\my programs\experiments\change razer blade 14 2022 refresh rate\.config"
     $battery_status = (Get-WmiObject Win32_Battery).BatteryStatus
     if ($battery_status -eq 2) {
-        if (($CurrentRefreshRate -eq 60) -and ($CurrentStatus -eq "OnBattery")) {
+        if ($CurrentRefreshRate -ne 165) {
             Set-ScreenRefreshRate -Frequency 165
-            Set-Content -Path "C:\Users\mesen\Desktop\my programs\experiments\change razer blade 14 2022 refresh rate\.config" -Value "OnPower" -NoNewline:$true
         }
     }
     elseif ($battery_status -ne 2) {
-        if (($CurrentRefreshRate -eq 165) -and ($CurrentStatus -eq "OnPower")) {
+        if ($CurrentRefreshRate -ne 60) {
             Set-ScreenRefreshRate -Frequency 60
-            Set-Content -Path "C:\Users\mesen\Desktop\my programs\experiments\change razer blade 14 2022 refresh rate\.config" -Value "OnBattery" -NoNewline:$true
         }
     }
-    
-    
